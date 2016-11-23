@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<!-- 使用到了 json，故拓展设为json默认-->
+<package name="book" namespace="/" extends="json-default">
+
+	<!-- 访问主页action，跳转到展示页面 -->
+	<action name="index" class="com.zzy.action.BookAction" method="viewBookList">
+		<result name="success">/view.jsp</result>
+		<result name="error">/error.jsp</result>
+	</action>
+	
+	<!-- 访问主页action，跳转到展示页面 -->
+	<action name="index.jsp" class="com.zzy.action.BookAction" method="viewBookList">
+		<result name="success">/view.jsp</result>
+		<result name="error">/error.jsp</result>
+	</action>
+
+	<action name="viewBookDetail" class="com.zzy.action.BookAction" method="viewBookDetail">
+		<result name="success">/bookdetail.jsp</result>
+		<result name="error">/error.jsp</result>
+	</action>
+	<action name="searchByAuthor" class="com.zzy.action.BookAction" method="searchByAuthor">
+		<result name="success">/view.jsp</result>
+		<result name="none">/error.jsp</result>
+	</action>
+	
+	<!-- 使用异步方式验证作者是否存在，用inputStream作为返回结果的数据流 -->
+	<action name="validateAuthor" class="com.zzy.action.BookAction" method="validateAuthor">
+		<result name="success" type="stream">
+			<param name="contentType">text/html</param>
+			<param name="inputStream">inputStream</param>
+		</result>
+	</action>
+	
+	<!-- 通过Ajax添加图书，异步返回json数据 -->
+	<action name="addBook" class="com.zzy.action.BookAction" method="addBook">
+		<result name="success" type="json"></result>
+		<result name="error">/error.jsp</result>
+	</action>
+	
+	<action name="addAuthorAndBook" class="com.zzy.action.BookAction" method="addAuthorAndBook">
+		<result name="success" type="json"></result>
+		<result name="error">/error.jsp</result>
+	</action>
+	
+	<!-- 通过Ajax删除图书，异步返回json数据 -->
+	<action name="deleteBook" class="com.zzy.action.BookAction" method="deleteBook">
+		<result name="success" type="json"></result>
+		<result name="error">/error.jsp</result>
+	</action>
+</package>
+
+</struts>    

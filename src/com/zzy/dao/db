@@ -1,0 +1,4 @@
+bookdb
+SE
+999
+jdbc:mysql://localhost:3306/
